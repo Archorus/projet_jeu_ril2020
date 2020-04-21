@@ -46,6 +46,7 @@ li{
 #footer-entire {
     background-color: #ececec;
     position: initial;
+    margin-top:3%;
 }
 
 #cesi-logo {
@@ -53,19 +54,20 @@ li{
     margin-right: auto;
     max-width: 200px;
     vertical-align: middle;
-    margin-top: 3%;
+    margin-top: 10%;
 }
 
 .text-cesi {
-    color: #12B3DB;
-    margin-top: 2%
-    font-size: 65%;
+    margin-top: 12%
+
+}
+.addresse{
+    font-size: 80%;
 }
 
 .items-social-links li {
     padding: 1%;
     display: inline-block;
-    margin-top: 3%;
 }
 
 .items-social-links img {
@@ -82,7 +84,6 @@ li{
 }
 
 #footer-entire p {
-    color: #12B3DB;
     margin-bottom: 0%;
 }
 
@@ -158,5 +159,19 @@ input[type=submit]:hover {
 }
 #Snavigation{
     margin-left: 70%;
+
+}
+
+/******************Score ************************/
+
+#Baccueil{
+    margin-top: 15%;
+    background: transparent;
+    margin-left: 5%;
+    width: 65%;
+    height: 65%;
+    font-size: 200%;
+    border-radius: 10px;
+    border: transparent;
 
 }
