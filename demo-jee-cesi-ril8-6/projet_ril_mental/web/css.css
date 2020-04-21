@@ -27,6 +27,11 @@ h3{
     position: absolute;
     width: 10% ;
 }
+
+li{
+    font-size: 132%;
+
+}
 .container{
     margin-top:5%;
 }
@@ -37,6 +42,51 @@ h3{
     margin-bottom: 5%;
     border-radius: 10px;
 }
+/************** Footer ******************/
+#footer-entire {
+    background-color: #ececec;
+    position: initial;
+}
+
+#cesi-logo {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
+    vertical-align: middle;
+    margin-top: 3%;
+}
+
+.text-cesi {
+    color: #12B3DB;
+    margin-top: 2%
+    font-size: 65%;
+}
+
+.items-social-links li {
+    padding: 1%;
+    display: inline-block;
+    margin-top: 3%;
+}
+
+.items-social-links img {
+    max-width: 30px;
+}
+
+#Flogo {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 150px;
+    vertical-align: middle;
+    width: 80%;
+    margin-top: 7%;
+}
+
+#footer-entire p {
+    color: #12B3DB;
+    margin-bottom: 0%;
+}
+
+
 /************** Connexion ***************/
 
 #Pconnexion{
@@ -66,7 +116,7 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-/* boutons s */
+/* ** boutons ** */
 input[type=submit] {
     background-color: #0C79BF;
     color: white;
@@ -88,10 +138,7 @@ input[type=submit]:hover {
 }
 
 
-li{
-    font-size: 135%;
 
-}
 
 #jeux{
     margin-top: 15%;
@@ -104,4 +151,12 @@ li{
     border: transparent;
 
 }
+/************************Jeux**********************/
+#Pnavigation{
+    margin-left: 10%;
 
+}
+#Snavigation{
+    margin-left: 70%;
+
+}
