@@ -2,9 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="css.css" media="screen" type="text/css" />
 </head>
 <body>
 
+<h1>Calculator</h1>
+    <div class="container">
+    <!-- zone de connexion -->
+
+        <form id="connexion">
+            <h1>Connexion</h1>
+
+            <label><b>Nom d'utilisateur</b></label>
+                    <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+
+            <label><b>Mot de passe</b></label>
+                    <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+
+                     <input type="submit" id='submit' value='GO' >
+
+        <!-- si mot de passe incorrect message d'erreur "Utilisateur ou mot de passe incorrect"-->
+    </form>
+        <a  href="#" onclick = "toggle('creation')">Cliquer pour s'enregister</a>
+        <!-- permet de cacher le formulaire d'inscription-->
+    </div>
+    <div class="container" id="creation" style="visibility:hidden";>
+    <form >
+        <h1>Création</h1>
+
+        <label><b>Nom d'utilisateur</b></label>
+        <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+
+        <label><b>Mot de passe</b></label>
+        <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+
+        <input type="submit" id='submit2' value='CREATION' >
+
+        <!-- l'utilisateur doit se log juste aprés la connexion-->
+
+    </form>
+</div>
 </body>
+<script type="text/javascript">
+
+    /** Fonction basculant la visibilité d'un élément dom
+     * @parameter anId string l'identificateur de la cible à montrer, cacher
+     */
+    function Hide (addr) { document.getElementById(addr).style.visibility = "hidden";	}
+    function Show (addr) { document.getElementById(addr).style.visibility = "visible";	}
+
+    function toggle(anId)
+    {
+        if (document.getElementById(anId).style.visibility == "hidden")	{	Show(anId);	}
+        else															{	Hide(anId);	}
+    }
+
+    window.onload = function () { Hide("creation");	};
+</script>
 </html>
