@@ -1,4 +1,4 @@
-package mental.model;
+package mental.bo;
 
 public class Utilisateur {
     int id;

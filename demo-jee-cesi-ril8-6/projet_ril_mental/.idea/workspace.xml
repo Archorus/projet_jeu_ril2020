@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cbb2517c-daa7-44f6-a0a8-cfa3685d4cde" name="Default Changelist" comment="initial commit">
+    <list default="true" id="cbb2517c-daa7-44f6-a0a8-cfa3685d4cde" name="Default Changelist" comment="Model">
       <change afterPath="$PROJECT_DIR$/../../Madera.Android/Assets/AboutAssets.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Madera.Android/Madera.Android.csproj" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Madera.Android/Madera.Android.csproj.user" afterDir="false" />
@@ -2520,12 +2520,9 @@
       <change afterPath="$PROJECT_DIR$/../../Madera/obj/Madera.csproj.nuget.g.props" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Madera/obj/Madera.csproj.nuget.g.targets" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Madera/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/model/Expression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/model/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/model/Operateur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/model/Operation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/model/Utilisateur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mental/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/connexion.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/connexion.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2536,8 +2533,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -2570,7 +2567,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../demo-jee-cesi-ril8-6" />
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 9.0.22" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -2665,7 +2662,7 @@
       <option name="presentableId" value="Default" />
       <updated>1587385634753</updated>
       <workItem from="1587385649926" duration="8100000" />
-      <workItem from="1587450558693" duration="4619000" />
+      <workItem from="1587450558693" duration="10709000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1587388484505</created>
@@ -2681,7 +2678,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587390839339</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Model">
+      <created>1587465265952</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587465265952</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2689,7 +2693,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="Model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Model" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="199" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587387612322">
@@ -2700,14 +2705,14 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="733" y="247" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1587465005675" />
-    <state x="529" y="139" key="CommitChangelistDialog2" timestamp="1587465241861">
+    <state x="529" y="139" key="CommitChangelistDialog2" timestamp="1587538476653">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="529" y="139" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1587465241861" />
-    <state x="740" y="285" key="FileChooserDialogImpl" timestamp="1587390530671">
+    <state x="529" y="139" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1587538476653" />
+    <state x="740" y="285" key="FileChooserDialogImpl" timestamp="1587471074120">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="740" y="285" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587390530671" />
+    <state x="740" y="285" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1587471074120" />
     <state width="1293" height="295" key="GridCell.Tab.0.bottom" timestamp="1587399371999">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -2756,10 +2761,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1293" height="295" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1587399372014" />
-    <state x="552" y="277" key="Vcs.Push.Dialog.v2" timestamp="1587390877959">
+    <state x="552" y="277" key="Vcs.Push.Dialog.v2" timestamp="1587465371805">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="552" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1587390877959" />
+    <state x="552" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1587465371805" />
     <state x="771" y="460" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587465109353">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
