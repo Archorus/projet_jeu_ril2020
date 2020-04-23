@@ -10,12 +10,12 @@ import java.util.Collection;
 
 public class UtilisateurDAO implements IUtilisateurDAO {
 
-    private static final String CREATE_UTILISATEUR = "INSERT INTO utilisateur (name, email, password) VALUES(?,?,?)";
-    private static final String UPDATE_UTILISATEUR = "UPDATE utilisateur SET name=?, email=?, password=?, ScoreMax=? where id=?";
-    private static final String DELETE_UTILISATEUR = "DELETE FROM utilisateur WHERE id= ?";
+    private static final String CREATE_UTILISATEUR = "INSERT INTO utilisateur (utilisateur_nom, utilisateur_email, utilisateur_password) VALUES(?,?,?)";
+    private static final String UPDATE_UTILISATEUR = "UPDATE utilisateur SET utilisateur_nom=?, utilisateur_email=?, utilisateur_password=?, utilisateur_scoreMax=? where id=?";
+    private static final String DELETE_UTILISATEUR = "DELETE FROM utilisateur WHERE utilisateur_id= ?";
     private static final String FIND_ALL_UTILISATEUR = "SELECT * FROM utilisateur";
-    private static final String FIND_BY_ID_UTILISATEUR = "SELECT * FROM utilisateur WHERE id= ?";
-    private static final String AUTH = "SELECT * FROM utilisateur WHERE email=? AND password=?";
+    private static final String FIND_BY_ID_UTILISATEUR = "SELECT * FROM utilisateur WHERE utilisateur_id= ?";
+    private static final String AUTH = "SELECT * FROM utilisateur WHERE utilisateur_email=? AND utilisateur_password=?";
 
 
     @Override
