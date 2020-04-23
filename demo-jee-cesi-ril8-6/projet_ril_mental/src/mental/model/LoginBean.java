@@ -1,5 +1,8 @@
 package mental.model;
 
+import mental.bo.Utilisateur;
+import mental.dal.DAOFactory;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.registry.infomodel.User;
@@ -34,8 +37,10 @@ public class LoginBean implements Serializable {
 
         boolean result = false;
         if(login!=null && password!=null) {
-            try {
-                User user = DAOFactory.getUserDAO().authenticate(login, password);
+                Utilisateur loginUtilisateur=new Utilisateur();
+                loginUtilisateur.setName(createLogin);
+                loginUtilisateur.setPassword(createPassword);
+                Utilisateur user= DAOFactory.getUtilisateurDAO().authenticate(loginUtilisateur);
                 if (null == user) {
                     message = "Mauvais id, merci de recommencer!!!";
                 } else {
@@ -44,33 +49,30 @@ public class LoginBean implements Serializable {
                     message = "Bienvenue à toi " + LOGIN_SUCCESS;
                     result = true;
                 }
-            } catch (SQLException e) {
-                message = "Attention, une erreur est survenue lors de l'accès à la base!!! ";
-            }
         }
         if(createLogin!=null && createPassword!=null) {
             try{
-                boolean newUser=DAOFactory.getUserDAO().createUtilisateur(createLogin,createPassword);
-                if(false==newUser){
-                    message="Des informations ont été oublié";
-                }else {
-                    User user=DAOFactory.getUserDAO().authenticate(createLogin,createPassword);
+                Utilisateur createUtilisateur=new Utilisateur();
+                createUtilisateur.setName(createLogin);
+                createUtilisateur.setPassword(createPassword);
+                DAOFactory.getUtilisateurDAO().create(createUtilisateur);
+
+                    Utilisateur user= DAOFactory.getUtilisateurDAO().authenticate(createUtilisateur);
                     if(null==user) {
                         message="Mauvais id, merci de recommencer!!!";
                     }else {
-                        HttpSession session=request.getSession(true);
-                        session.setAttribute(CURRENT_USER_SESSION_KEY,user);
-                        message="Bienvenue à toi "+ LOGIN_SUCCESS;
-                        result=true;
+                        HttpSession session = request.getSession(true);
+                        session.setAttribute(CURRENT_USER_SESSION_KEY, user);
+                        message = "Bienvenue à toi " + LOGIN_SUCCESS;
+                        result = true;
                     }
-                }
                 }catch(SQLException e) {
-                message="Attention, une erreur est surv"
+                message="Attention, une erreur est survenue";
             }
             }
-        }
         return result;
-    }
+        }
+
 
     public boolean isAuthenticated( HttpServletRequest request ) {
         HttpSession session = request.getSession( true );

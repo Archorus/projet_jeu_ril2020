@@ -55,15 +55,7 @@
     <session-timeout>1</session-timeout>
 </session-config>
 
-<jsp-config>
-    <jsp-property-group>
-        <url-pattern>*.jsp</url-pattern>
-        <page-encoding>UTF-8</page-encoding>
-        <include-prelude>/WEB-INF/tags/common-tags.jsp</include-prelude>
-    </jsp-property-group>
-</jsp-config>
-
 <welcome-file-list>
-    <welcome-file>home</welcome-file>
+    <welcome-file>login</welcome-file>
 </welcome-file-list>
 </web-app>
