@@ -9,11 +9,11 @@ import java.util.Collection;
 
 public class GameDAO implements IGameDAO {
 
-    private static final String CREATE_GAME = "INSERT INTO utilisateur (score, level) VALUES(?,?)";
-    private static final String UPDATE_GAME = "UPDATE utilisateur SET name=?, email=?, password=?, ScoreMax=? where id=?";
-    private static final String DELETE_GAME = "DELETE FROM utilisateur WHERE id= ?";
-    private static final String FIND_ALL_GAME = "SELECT * FROM utilisateur";
-    private static final String FIND_BY_ID_GAME = "SELECT * FROM utilisateur WHERE id= ?";
+    private static final String CREATE_GAME = "INSERT INTO game (score, level) VALUES(?,?)";
+    private static final String UPDATE_GAME = "UPDATE game SET score=?, level=?";
+    private static final String DELETE_GAME = "DELETE FROM game WHERE id= ?";
+    private static final String FIND_ALL_GAME = "SELECT * FROM game";
+    private static final String FIND_BY_ID_GAME = "SELECT * FROM game WHERE id= ?";
 
 
     @Override
@@ -21,8 +21,8 @@ public class GameDAO implements IGameDAO {
         Connection connection = DAOFactory.getJDBCConnection();
         if ( null != connection ) {
             try ( PreparedStatement ps = connection.prepareStatement(CREATE_GAME, Statement.RETURN_GENERATED_KEYS ) ) {
-                ps.setString( 1, game.get() );
-                ps.setString( 2, game.get() );
+                ps.setInt( 1, game.getScore() );
+                ps.setInt( 2, game.getLevel() );
                 ps.executeUpdate();
                 try ( ResultSet rs = ps.getGeneratedKeys() ) {
                     if ( rs.next()) {
@@ -36,15 +36,13 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public void update(Utilisateur utilisateur) throws SQLException {
+    public void update(Game game) throws SQLException {
 
         try (Connection connection = DAOFactory.getJDBCConnection()) {
             if (null != connection) {
-                try (PreparedStatement ps = connection.prepareStatement(UPDATE_UTILISATEUR)) {
-                    ps.setString(1, utilisateur.getName());
-                    ps.setString(2, utilisateur.getEmail());
-                    ps.setString(3, utilisateur.getPassword());
-                    ps.setInt(4, utilisateur.getScore_max());
+                try (PreparedStatement ps = connection.prepareStatement(UPDATE_GAME)) {
+                    ps.setInt(1, game.getScore());
+                    ps.setInt(2, game.getLevel());
                     ps.executeUpdate();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -57,7 +55,7 @@ public class GameDAO implements IGameDAO {
     public void deleteById(Integer id) throws SQLException {
 
         try(Connection connection=DAOFactory.getJDBCConnection()){
-            PreparedStatement ps=connection.prepareStatement(DELETE_UTILISATEUR);
+            PreparedStatement ps=connection.prepareStatement(DELETE_GAME);
             ps.setInt(1,id);
             ps.executeUpdate();
         }catch(SQLException e){
@@ -66,42 +64,41 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public void delete(Utilisateur utilisateur) throws SQLException{
-        deleteById(utilisateur.getId());
+    public void delete(Game game) throws SQLException {
+        deleteById(game.getId());
     }
 
     @Override
-    public Utilisateur findById(Integer id) {
-        Utilisateur utilisateur =new Utilisateur();
+    public Game findById(Integer id) {
+        Game game = null;
         try (Connection connection = DAOFactory.getJDBCConnection()){
-            PreparedStatement ps= connection.prepareStatement(FIND_BY_ID_UTILISATEUR);
+            PreparedStatement ps= connection.prepareStatement(FIND_BY_ID_GAME);
             ps.setInt(1,id);
             ResultSet res=ps.executeQuery();
             if(res.first()){
-                utilisateur.setId(res.getInt(1));
-                utilisateur.setName(res.getString(2));
-                utilisateur.setEmail(res.getString(3));
-                utilisateur.setPassword(res.getString(4));
-                utilisateur.setScore_max(res.getInt(5));
+                game = new Game();
+                game.setId(res.getInt(1));
+                game.setScore(res.getInt(2));
+                game.setLevel(res.getInt(3));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return utilisateur;
+        return game;
     }
 
     @Override
-    public Collection<Utilisateur> findAll() {
-        Collection<Utilisateur> ListeUtilisateurs= new ArrayList<>();
+    public Collection<Game> findAll() {
+        Collection<Game> ListeDesParties= new ArrayList<>();
         try (Connection connection = DAOFactory.getJDBCConnection()){
-            PreparedStatement ps= connection.prepareStatement(FIND_ALL_UTILISATEUR);
+            PreparedStatement ps= connection.prepareStatement(FIND_ALL_GAME);
             ResultSet res=ps.executeQuery();
             while(res.next()) {
-                ListeUtilisateurs.add(new Utilisateur(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getInt(5)));
+                ListeDesParties.add(new Game(res.getInt(1),res.getInt(2),res.getInt(3)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return ListeUtilisateurs;
+        return ListeDesParties;
     }
 }

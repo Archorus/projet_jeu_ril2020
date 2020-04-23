@@ -5,6 +5,9 @@ public class Game {
     int score;
     int level;
 
+    public Game() {
+    }
+
     public Game(int id, int score, int level) {
         this.id = id;
         this.score = score;

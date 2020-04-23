@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cbb2517c-daa7-44f6-a0a8-cfa3685d4cde" name="Default Changelist" comment="Model">
-      <change afterPath="$PROJECT_DIR$/src/mental/dal/IDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/dal/IGameDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/dal/IUtilisateurDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/dal/jdbc/ExpressionDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/dal/jdbc/GameDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mental/dal/jdbc/OperationDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cbb2517c-daa7-44f6-a0a8-cfa3685d4cde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mental/bo/Utilisateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mental/bo/Utilisateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mental/bo/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mental/bo/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mental/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mental/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mental/dal/jdbc/UtilisateurDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mental/dal/jdbc/UtilisateurDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mental/dal/IGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mental/dal/IGameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mental/dal/jdbc/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mental/dal/jdbc/GameDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +174,7 @@
       <workItem from="1587450558693" duration="10709000" />
       <workItem from="1587538317670" duration="19440000" />
       <workItem from="1587623624766" duration="3959000" />
-      <workItem from="1587629164250" duration="12097000" />
+      <workItem from="1587629164250" duration="13185000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1587388484505</created>
@@ -218,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587643402461</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ajout Methode Authenticate() dans utilisateurDAO">
+      <created>1587646482333</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1587646482333</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +229,8 @@
     <MESSAGE value="Model" />
     <MESSAGE value="Premier jet du backend(des erreurs sont là car le DAO est pratiquement pas touché)" />
     <MESSAGE value="Fin de UtilisateurDAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fin de UtilisateurDAO" />
+    <MESSAGE value="Ajout Methode Authenticate() dans utilisateurDAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout Methode Authenticate() dans utilisateurDAO" />
   </component>
   <component name="WindowStateProjectService">
     <state x="331" y="134" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587629849282">
@@ -237,10 +238,10 @@
     </state>
     <state x="331" y="134" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1587629849282" />
     <state x="414" y="199" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1587539445807" />
-    <state x="586" y="188" key="#com.intellij.ide.util.MemberChooser" timestamp="1587642778367">
+    <state x="586" y="188" key="#com.intellij.ide.util.MemberChooser" timestamp="1587647215390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="188" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587642778367" />
+    <state x="586" y="188" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587647215390" />
     <state x="733" y="247" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1587465005675" />
     <state x="1003" y="304" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1587629296659">
       <screen x="0" y="0" width="1536" height="824" />
@@ -262,10 +263,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="298" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1587539851797" />
-    <state x="423" y="13" key="CommitChangelistDialog2" timestamp="1587643401344">
+    <state x="423" y="13" key="CommitChangelistDialog2" timestamp="1587646481291">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="423" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587643401344" />
+    <state x="423" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587646481291" />
     <state x="529" y="139" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1587628257190" />
     <state x="714" y="259" key="DetectedRootsChooserDialog" timestamp="1587539843122">
       <screen x="0" y="0" width="1920" height="1080" />
@@ -327,10 +328,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="440" y="118" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1587627316793" />
-    <state x="442" y="211" key="Vcs.Push.Dialog.v2" timestamp="1587644279327">
+    <state x="442" y="211" key="Vcs.Push.Dialog.v2" timestamp="1587646491204">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="442" y="211" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1587644279327" />
+    <state x="442" y="211" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1587646491204" />
     <state x="552" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1587628100685" />
     <state x="664" y="442" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587539652689">
       <screen x="0" y="0" width="1920" height="1080" />
