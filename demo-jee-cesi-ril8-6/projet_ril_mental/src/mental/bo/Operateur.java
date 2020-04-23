@@ -4,5 +4,7 @@ public enum Operateur {
     PLUS,
     MOINS,
     DIVISER,
-    MULTIPLIER
+    MULTIPLIER,
+    INV,
+    RAC
 }

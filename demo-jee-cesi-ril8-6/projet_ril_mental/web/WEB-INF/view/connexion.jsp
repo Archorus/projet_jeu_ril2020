@@ -35,7 +35,7 @@
         <!-- permet de cacher le formulaire d'inscription-->
     </div>
     <div class="container" id="creation" style="visibility:hidden";>
-    <form method>
+    <form method="POST" action="login" id="create">
         <h2>Création</h2>
 
         <label><b>Nom d'utilisateur</b></label>

@@ -2,7 +2,7 @@ package mental.bo;
 
 public class Expression {
     int id;
-    String data;
+    Operation[] data;
     int expectedValue;
     int providedValue;
 
@@ -14,11 +14,16 @@ public class Expression {
         this.id = id;
     }
 
-    public String getData() {
+    public Operation[] getData() {
         return data;
     }
+    public String getFullData(){
+        Operation[] laData=getData();
+        String fullData=laData.toString();
+        return fullData;
+    }
 
-    public void setData(String data) {
+    public void setData(Operation[] data) {
         this.data = data;
     }
 
@@ -38,11 +43,13 @@ public class Expression {
         this.providedValue = providedValue;
     }
 
-    public Expression(int id, String data, int expectedValue, int providedValue) {
+    public Expression(int id, Operation[] data) {
         this.id = id;
         this.data = data;
-        this.expectedValue = expectedValue;
-        this.providedValue = providedValue;
+        this.expectedValue = Operation.Calcul(data);
+    }
+    public Expression(){
+
     }
 
     public void recupérerExpression(int difficulte) {
@@ -64,6 +71,21 @@ public class Expression {
         uneGame.setScore(uneGame.getScore() - 6);
     }
     return uneGame;
+}
+public int évaluer(int expectValue,int provideValue){
+        int score=0;
+    if (expectValue == provideValue) {
+
+        score=5;
+    }
+
+    if (expectValue*2>provideValue) {
+        score=-3;
+    }
+    if(expectValue*3>provideValue) {
+        score= - 6;
+    }
+    return score;
 }
 
 }

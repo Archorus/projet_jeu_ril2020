@@ -34,9 +34,9 @@ public class LoginBean implements Serializable {
         password = request.getParameter( FORM_FIELD_PWD );
         createLogin = request.getParameter( FORM_FIELD_CREATE_LOGIN);
         createPassword=request.getParameter(FORM_FIELD_CREATE_PWD);
-
         boolean result = false;
-        if(login!=null && password!=null) {
+        if(login!="" && password!="") {
+            System.out.println("1");
                 Utilisateur loginUtilisateur=new Utilisateur();
                 loginUtilisateur.setName(createLogin);
                 loginUtilisateur.setPassword(createPassword);
@@ -57,7 +57,7 @@ public class LoginBean implements Serializable {
                 createUtilisateur.setPassword(createPassword);
                 DAOFactory.getUtilisateurDAO().create(createUtilisateur);
 
-                    Utilisateur user= DAOFactory.getUtilisateurDAO().authenticate(createUtilisateur);
+                /*    Utilisateur user= DAOFactory.getUtilisateurDAO().authenticate(createUtilisateur);
                     if(null==user) {
                         message="Mauvais id, merci de recommencer!!!";
                     }else {
@@ -65,11 +65,12 @@ public class LoginBean implements Serializable {
                         session.setAttribute(CURRENT_USER_SESSION_KEY, user);
                         message = "Bienvenue à toi " + LOGIN_SUCCESS;
                         result = true;
-                    }
+                    }*/
                 }catch(SQLException e) {
                 message="Attention, une erreur est survenue";
             }
             }
+        System.out.println(result);
         return result;
         }
 

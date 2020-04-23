@@ -50,7 +50,7 @@ public class Operation {
     public Operation(){
 
     }
-    public String générerExpression(int difficulté) {
+    public Operation[] générerExpression(int difficulté) {
 
         int listeNombres = 0;
         switch (difficulté) {
@@ -58,98 +58,100 @@ public class Operation {
                 listeNombres = 1;
                 break;
             case 2:
-                listeNombres = 3;
+                listeNombres = 2;
                 break;
             case 3:
-                listeNombres = 6;
+                listeNombres = 4;
                 break;
         }
         int unaire = (int) Math.random() * 2;
         //0= pas de unaire, 1=inv, 2=rac
-        String[] Expression = new String[listeNombres];
+        Operation[] Expressions = new Operation[listeNombres];
         String uneExpression = "";
 
         for (int i = 0; i < listeNombres; i++) {
             switch (i) {
                 case 0:
-                    Expression[0] = String.valueOf(((int) (Math.random() * 9)));
-                    Expression[0]=Expression[0]+" ";
+                    Expressions[0].setVal1((int) (Math.random() * 9));
                     break;
                 case 1:
-                    Expression[1] = générerBinaire();
-                    Expression[1]=Expression[1]+" ";
+                    Expressions[0].setOperator(générerBinaire());
                     break;
                 case 2:
-                    Expression[2] = String.valueOf(((int) (Math.random() * 9)));
-                    Expression[2]=Expression[2]+" ";
+                    Expressions[0].setVal2((int) (Math.random() * 9));
                     break;
                 case 3:
-                    Expression[3] = String.valueOf(((int) (Math.random() * 9)));
-                    Expression[3]=Expression[3]+" ";
+                    Expressions[1].setVal1((int) (Math.random() * 9));
                 case 4:
-                    Expression[4] = générerBinaire();
-                    Expression[4]=Expression[4]+" ";
+                    Expressions[1].setOperator(générerBinaire());
                     break;
                 case 5:
-                    Expression[5] = String.valueOf(((int) (Math.random() * 9)));
-                    Expression[5]=Expression[5]+" ";
+                    Expressions[1].setVal2((int) (Math.random() * 9));
                     break;
                 case 6:
-                    Expression[6] = générerUnaire();
+                    Expressions[2].setOperator(générerUnaire());
             }
-            Expression[i] = String.valueOf(((int) (Math.random() * 9)));
         }
 
-        return Expression.toString();
+        return Expressions;
     }
-    public String générerBinaire(){
+    public Operateur générerBinaire(){
 
         int binaireAleatoire = (int)(Math.random()*3);
-        String binaire="";
+        Operateur binaire= Operateur.PLUS;
         switch(binaireAleatoire) {
             case 0:
-                binaire ="+";
+                binaire =Operateur.PLUS;
                 break;
             case 1:
-                binaire ="-";
+                binaire =Operateur.MOINS;
             case 2:
-                binaire ="*";
+                binaire =Operateur.MULTIPLIER;
                 break;
             case 3:
-                binaire="/";
+                binaire=Operateur.DIVISER;
                 break;
         }
         return binaire;
     }
-    public String générerUnaire(){
-        String unaire="";
+    public Operateur générerUnaire(){
+        Operateur unaire=Operateur.INV;
         int unaireAleatoire=(int)(Math.random()*2);
         switch(unaireAleatoire) {
             case 0:
-                unaire="inv";
+                unaire=Operateur.INV;
                 break;
             case 1:
-                unaire="rac";
+                unaire=Operateur.RAC;
+                break;
 
         }
         return unaire;
     }
-    public int Calcul(String Expression) {
+    public static int Calcul(Operation[] Expression) {
         int Resultat = 0;
-        String[] uneExpression=Expression.split(" ");
-        switch(uneExpression[1]) {
-            case "+":
-                Resultat = Resultat +(Integer.parseInt(uneExpression[0])+Integer.parseInt(uneExpression[2]));
-                break;
-            case "-":
-                Resultat = Resultat +(Integer.parseInt(uneExpression[0])-Integer.parseInt(uneExpression[2]));
-                break;
-            case "*":
-                Resultat = Resultat +(Integer.parseInt(uneExpression[0])*Integer.parseInt(uneExpression[2]));
-                break;
-            case "/":
-                Resultat = Resultat +(Integer.parseInt(uneExpression[0])+Integer.parseInt(uneExpression[2]));
-                break;
+
+        for (Operation uneExpression:Expression) {
+            switch(uneExpression.getOperator()) {
+                case PLUS:
+                    Resultat = Resultat + (uneExpression.getVal1() + uneExpression.getVal2());
+                    break;
+                case MOINS:
+                    Resultat = Resultat + (uneExpression.getVal1() - uneExpression.getVal2());
+                    break;
+                case MULTIPLIER:
+                    Resultat = Resultat + (uneExpression.getVal1() + uneExpression.getVal2());
+                    break;
+                case DIVISER:
+                    Resultat = Resultat + (uneExpression.getVal1() + uneExpression.getVal2());
+                    break;
+                case INV:
+                    Resultat= Resultat/Resultat;
+                    break;
+                case RAC:
+                    Resultat=Resultat*Resultat;
+                    break;
+            }
         }
         return Resultat;
     }

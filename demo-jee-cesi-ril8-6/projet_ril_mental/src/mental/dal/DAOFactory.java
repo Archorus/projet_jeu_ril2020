@@ -34,15 +34,7 @@ public class DAOFactory {
     }
     public static IUtilisateurDAO getUtilisateurDAO() {
 
-        IUtilisateurDAO dao = null;
-        switch ( mode ) {
-            case "JDBC" :
-                dao = new UtilisateurDAO();
-                break;
-            case "JPA" :
-                // dao = new JPAUserDAO();
-                break;
-        }
+        IUtilisateurDAO dao=new UtilisateurDAO();
         return dao;
     }
 }

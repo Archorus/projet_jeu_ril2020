@@ -17,7 +17,7 @@
 </context-param>
 <context-param>
     <param-name>JDBC_DB_URL</param-name>
-    <param-value>jdbc:mysql://localhost:3306/cesi-ril8?serverTimezone=UTC</param-value>
+    <param-value>jdbc:mysql://localhost/projet_jee?serverTimezone=UTC</param-value>
 </context-param>
 <context-param>
     <param-name>JDBC_DB_LOGIN</param-name>

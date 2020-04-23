@@ -14,10 +14,11 @@
 
     <h1>Calculator</h1>
         <img src="images/logo.png" id="logo" alt="logo">
-    <h2>Bienvenue (Nom utilisateur) !!!</h2>
+    <h2>Bienvenue ${session.CURRENT_USER_SESSION_KEY} !!!</h2>
         <a  href="connexion.html"> <input id="deco" type="deco" value="Déconnexion"></a>
     <div class="container-fluid">
         <div class="row">
+            <form method="POST" action="jeu">
             <div class="offset-2 col-md-4">
                 <h3> TOP 10 </h3>
                 <ol>
@@ -36,8 +37,14 @@
             </div>
 
             <div class="col-md-3">
-                <a href="jeux.html"><input type="bouton" id="jeux"  value="JOUER"></a>
+
+                <input type="text" name="difficulte" placeholder="la difficulté que vous voulez? Entre 1 et 3"/>
+                    <input type="hidden" name="uneGame" value=""/>
+                    <input type="hidden" name="from" value="accueil"/>
+                <input type="bouton" id="jeux"  value="JOUER">
+
             </div>
+            </form>
         </div>
     </div>
     <!-- Footer -->

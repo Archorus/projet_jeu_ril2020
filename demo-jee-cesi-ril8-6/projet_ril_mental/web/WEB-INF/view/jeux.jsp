@@ -12,21 +12,25 @@
 
 </head>
 <body id="Pconnexion">
+<jsp:useBean id="contactBean" class="mental.model.JeuBean" scope="request"></jsp:useBean>
         <h1>Calculator</h1>
             <img src="images/logo.png" id="logo" alt="logo">
-        <h2>(Nom utilisateur) !!!</h2>
+        <h2>${session.CURRENT_USER_SESSION_KEY}!!!</h2>
             <a  href="connexion.html"> <input id="deco" type="deco" value="Déconnexion" label="deco"></a>
     <div class="container">
     <!-- zone de connexion -->
 
-    <form id="connexion">
+    <form method="POST" action="jeu" id="connexion">
         <h2>Calculer</h2>
 
-        <label><b>Opération (1+1= )</b></label>
-        <input type="text" placeholder="Entrer votre réponse"  required label="réponse">
+        <label><strong name="Expression">${jeuBean.uneExpression.getFullData()}</strong></label>
+        <input type="text" placeholder="Entrer votre réponse"  name="providedValue" required label="réponse">
 
 
-
+        <input type="hidden" name="difficulte" value="${jeuBean.difficulte}"/>
+        <input type="hidden" name="uneGame" value="${jeuBean.uneGame}"/>
+        <input type="hidden" name="from" value="jeux"/>
+        <input type="hidden" name="score" value="${jeuBean.score}"/>
         <input type="submit" id='submit' value='Valider' >
 
 

@@ -15,7 +15,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
     private static final String DELETE_UTILISATEUR = "DELETE FROM utilisateur WHERE utilisateur_id= ?";
     private static final String FIND_ALL_UTILISATEUR = "SELECT * FROM utilisateur";
     private static final String FIND_BY_ID_UTILISATEUR = "SELECT * FROM utilisateur WHERE utilisateur_id= ?";
-    private static final String AUTH = "SELECT * FROM utilisateur WHERE utilisateur_email=? AND utilisateur_password=?";
+    private static final String AUTH = "SELECT * FROM utilisateur WHERE utilisateur_name=? AND utilisateur_password=?";
 
 
     @Override
@@ -24,7 +24,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
         if ( null != connection ) {
             try ( PreparedStatement ps = connection.prepareStatement(CREATE_UTILISATEUR, Statement.RETURN_GENERATED_KEYS ) ) {
                 ps.setString( 1, utilisateur.getName() );
-                ps.setString( 2, utilisateur.getEmail() );
+                ps.setString( 2, "test" );
                 ps.setString( 2, utilisateur.getPassword() );
                 ps.executeUpdate();
                 try ( ResultSet rs = ps.getGeneratedKeys() ) {
@@ -110,6 +110,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
     }
 
     public Utilisateur authenticate (Utilisateur utilisateur) {
+        System.out.println(utilisateur.getName());
         try (Connection connection = DAOFactory.getJDBCConnection()){
             PreparedStatement ps= connection.prepareStatement(AUTH);
             ps.setString(1,utilisateur.getName());
