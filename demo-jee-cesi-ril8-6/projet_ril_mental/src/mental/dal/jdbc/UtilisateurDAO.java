@@ -112,7 +112,7 @@ public class UtilisateurDAO implements IUtilisateurDAO {
     public Utilisateur authenticate (Utilisateur utilisateur) {
         try (Connection connection = DAOFactory.getJDBCConnection()){
             PreparedStatement ps= connection.prepareStatement(AUTH);
-            ps.setString(1,utilisateur.getEmail());
+            ps.setString(1,utilisateur.getName());
             ps.setString(2,utilisateur.getPassword());
             ResultSet res=ps.executeQuery();
             if(res.first()){

@@ -46,8 +46,9 @@ public class Expression {
     }
 
     public void recupérerExpression(int difficulte) {
-        setData(Operateur.genererExpression(difficulte));
-        setExpectedValue(Operateur.calcul(difficulte));
+        Operation operation=new Operation();
+        setData(operation.générerExpression(difficulte));
+        setExpectedValue(operation.Calcul(getData()));
     }
 
     public Game évaluer(Game uneGame) {
@@ -62,6 +63,7 @@ public class Expression {
     if(getExpectedValue()*3>getProvidedValue()) {
         uneGame.setScore(uneGame.getScore() - 6);
     }
+    return uneGame;
 }
 
 }

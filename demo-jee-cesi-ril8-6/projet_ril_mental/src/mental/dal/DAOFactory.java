@@ -1,5 +1,6 @@
 package mental.dal;
 
+import mental.dal.jdbc.UtilisateurDAO;
 import mental.util.StringUtil;
 
 import javax.servlet.ServletContext;
@@ -30,5 +31,18 @@ public class DAOFactory {
 
     public static Connection getJDBCConnection() throws SQLException {
         return DriverManager.getConnection( jdbcURL, jdbcLogin, jdbcPassword );
+    }
+    public static IUtilisateurDAO getUtilisateurDAO() {
+
+        IUtilisateurDAO dao = null;
+        switch ( mode ) {
+            case "JDBC" :
+                dao = new UtilisateurDAO();
+                break;
+            case "JPA" :
+                // dao = new JPAUserDAO();
+                break;
+        }
+        return dao;
     }
 }

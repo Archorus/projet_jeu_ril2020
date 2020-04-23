@@ -20,7 +20,7 @@ public class mentalController extends HttpServlet {
 
     @Override
     public void destroy() {
-        LOGGER.log( Level.INFO, "Destruction de notre servlet LoginController" )
+        LOGGER.log( Level.INFO, "Destruction de notre servlet LoginController" );
     }
 
     @Override
