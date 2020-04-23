@@ -1,11 +1,16 @@
 package mental.bo;
 
-public class Utilisateur {
+public class Utilisateur
+{
     int id;
     String name;
     String email;
     String password;
     int score_max;
+
+    public Utilisateur() {
+
+    }
 
     public Utilisateur(int id, String name, String email, String password, int score_max) {
         this.id = id;
