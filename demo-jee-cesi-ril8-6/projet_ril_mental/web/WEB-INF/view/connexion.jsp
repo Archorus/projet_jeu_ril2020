@@ -18,14 +18,14 @@
     <div class="container">
     <!-- zone de connexion -->
 
-        <form method="post" action="connexion" id="connexion">
+        <form method="POST" action="login" id="connexion">
             <h2>Connexion</h2>
 
             <label><b>Nom d'utilisateur</b></label>
-                    <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required label="name">
+                    <input type="text" placeholder="Entrer le nom d'utilisateur" name="login-username" required label="name">
 
             <label><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrer le mot de passe" name="password" required label="password">
+                    <input type="password" placeholder="Entrer le mot de passe" name="login-password" required label="password">
 
                      <input type="submit" id='submit' value='GO' onclick="login()" >
 
@@ -35,7 +35,7 @@
         <!-- permet de cacher le formulaire d'inscription-->
     </div>
     <div class="container" id="creation" style="visibility:hidden";>
-    <form method="post" action="connexion">
+    <form method>
         <h2>Création</h2>
 
         <label><b>Nom d'utilisateur</b></label>

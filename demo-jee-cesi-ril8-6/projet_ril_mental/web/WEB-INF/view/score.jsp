@@ -9,46 +9,47 @@
     <link rel="stylesheet" type="text/css" href="vendors/bootstrap4.3.1.min.css" />
     <!-- CSS-->
     <link rel="stylesheet" href="css.css" media="screen" type="text/css" />
-
 </head>
-<body id="Pconnexion">
+<body id="Paccueil">
 
 <h1>Calculator</h1>
 <img src="images/logo.png" id="logo" alt="logo">
-    <div class="container">
-    <!-- zone de connexion -->
+<h2>Bienvenue (Nom utilisateur) !!!</h2>
+<a  href="connexion.html"> <input id="deco" type="deco" value="Déconnexion"></a>
+<h2> Score 8 Bravo !!! </h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-2 col-md-3">
+            <h3> TOP score (Nom utilisateur) !!! </h3>
+            <ol>
+                <li>10</li>
+                <li>10</li>
+                <li>9</li>
+                <li>9</li>
+                <li>8</li>
+                <li>8</li>
+                <li>7</li>
+                <li>7</li>
+                <li>7</li>
+                <li>6</li>
 
-        <form method="post" action="connexion" id="connexion">
-            <h2>Connexion</h2>
+            </ol>
+        </div>
 
-            <label><b>Nom d'utilisateur</b></label>
-                    <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required label="name">
 
-            <label><b>Mot de passe</b></label>
-                    <input type="password" placeholder="Entrer le mot de passe" name="password" required label="password">
 
-                     <input type="submit" id='submit' value='GO' onclick="login()" >
 
-        <!-- si mot de passe incorrect message d'erreur "Utilisateur ou mot de passe incorrect"-->
-    </form>
-        <a  href="#" onclick = "toggle('creation')">Création compte</a>
-        <!-- permet de cacher le formulaire d'inscription-->
-    </div>
-    <div class="container" id="creation" style="visibility:hidden";>
-    <form method="post" action="connexion">
-        <h2>Création</h2>
 
-        <label><b>Nom d'utilisateur</b></label>
-        <input type="text" placeholder="Entrer le nom d'utilisateur" name="create-username" required>
+                <div class="col-md-3">
+                    <a href="jeux.html"><input type="bouton"  id="jeux"   value="JOUER"></a>
+            </div>
 
-        <label><b>Mot de passe</b></label>
-        <input type="password" placeholder="Entrer le mot de passe" name="create-password" required>
+                <div class="col-md-3">
+                    <a href="accueil.html"><input type="bouton" id="Baccueil"  value="Accueil"></a>
+            </div>
+            </div>
 
-        <input type="submit" id='submit2' value='CREATION' >
 
-        <!-- l'utilisateur doit se log juste aprés la connexion-->
-
-    </form>
 </div>
 <!-- Footer -->
 <footer class="page-footer font-small pt-4" id="footer-entire">
@@ -88,8 +89,8 @@
     <div class="footer-copyright text-center py-3">
         <p>All rights reserved by Calculator. Copyright © 2020</p>
     </div>
-</footer>>
+</footer>
 </body>
-<!-- SCRIPTS -->
-<script type="text/javascript" src="js.js"></script>
+
+
 </html>

@@ -44,4 +44,24 @@ public class Expression {
         this.expectedValue = expectedValue;
         this.providedValue = providedValue;
     }
+
+    public void recupérerExpression(int difficulte) {
+        setData(Operateur.genererExpression(difficulte));
+        setExpectedValue(Operateur.calcul(difficulte));
+    }
+
+    public Game évaluer(Game uneGame) {
+        if (getExpectedValue() == getProvidedValue()) {
+
+            uneGame.setScore(uneGame.getScore() + 5);
+        }
+
+    if (getExpectedValue()*2>getProvidedValue()) {
+        uneGame.setScore(uneGame.getScore() - 3);
+    }
+    if(getExpectedValue()*3>getProvidedValue()) {
+        uneGame.setScore(uneGame.getScore() - 6);
+    }
+}
+
 }

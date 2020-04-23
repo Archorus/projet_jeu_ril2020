@@ -14,7 +14,7 @@
 
     <h1>Calculator</h1>
         <img src="images/logo.png" id="logo" alt="logo">
-    <h2>${loginBean.message}</h2>
+    <h2>Bienvenue (Nom utilisateur) !!!</h2>
         <a  href="connexion.html"> <input id="deco" type="deco" value="Déconnexion"></a>
     <div class="container-fluid">
         <div class="row">
