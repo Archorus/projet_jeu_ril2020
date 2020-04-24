@@ -29,23 +29,26 @@ public class mentalController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JeuBean jeuBean=(JeuBean)req.getAttribute("jeuBean");
+
         System.out.println("coucou");
         jeuBean=new JeuBean();
         String path=req.getServletPath();
         switch(path) {
             case "jeu":
+                System.out.println("hey");
                 if(req.getAttribute("from")=="accueil"){
                 req.setAttribute("difficulte",req.getParameter("difficulte"));
                 System.out.println("dansjeu");
                 jeuBean.NouveauJeu(req);
                     resp.sendRedirect(req.getContextPath()+ "/jeu");
                 }else{
+                    System.out.println("lol");
                     req.setAttribute("difficulte",req.getParameter("difficulte"));
                     req.setAttribute("uneGame",req.getParameter("uneGame"));
                     if(jeuBean.jeuSuivant(req)){
                         resp.sendRedirect(req.getContextPath()+ "/jeu");
                     }else{
-                        resp.sendRedirect(req.getContextPath()+"score");
+                        resp.sendRedirect(req.getContextPath()+"/score");
                     }
                 }
                 break;

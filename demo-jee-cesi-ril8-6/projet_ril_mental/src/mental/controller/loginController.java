@@ -48,7 +48,6 @@ public class loginController extends HttpServlet {
         LoginBean model = new LoginBean();
         request.setAttribute( "loginBean", model );
         if ( model.authenticate( request ) ) {
-            System.out.println("...");
             response.sendRedirect( request.getContextPath() + HOME_URL_PATTERN );
         } else {
             doGet( request, response );
