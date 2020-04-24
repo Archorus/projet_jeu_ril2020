@@ -14,8 +14,8 @@ public class LoginBean implements Serializable {
     private static final String LOGIN_SUCCESS = "ssylla";
     private static final String PWD_SUCCESS = "test123";
 
-    private static final String FORM_FIELD_LOGIN = "username";
-    private static final String FORM_FIELD_PWD = "password";
+    private static final String FORM_FIELD_LOGIN = "login-username";
+    private static final String FORM_FIELD_PWD = "login-password";
     private static final String CURRENT_USER_SESSION_KEY = "currentUser";
     private static final String FORM_FIELD_CREATE_LOGIN="create-username";
     private static final String FORM_FIELD_CREATE_PWD="create-password";
@@ -38,9 +38,9 @@ public class LoginBean implements Serializable {
         if(login!="" && password!="") {
             System.out.println("1");
                 Utilisateur loginUtilisateur=new Utilisateur();
-                loginUtilisateur.setName(createLogin);
-                loginUtilisateur.setPassword(createPassword);
-                Utilisateur user= DAOFactory.getUtilisateurDAO().authenticate(loginUtilisateur);
+                loginUtilisateur.setName(login);
+                loginUtilisateur.setPassword(password);
+                Utilisateur user= DAOFactory.getUtilisateurDAO().authenticate(login,password);
                 if (null == user) {
                     message = "Mauvais id, merci de recommencer!!!";
                 } else {
@@ -70,7 +70,6 @@ public class LoginBean implements Serializable {
                 message="Attention, une erreur est survenue";
             }
             }
-        System.out.println(result);
         return result;
         }
 

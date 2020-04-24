@@ -17,22 +17,15 @@
     <h2>Bienvenue ${loginBean.FORM_FIELD_LOGIN} !!!</h2>
         <a  href="connexion.html"> <input id="deco" type="deco" value="Déconnexion"></a>
     <div class="container-fluid">
+        <jsp:useBean id="jeuBean" class="mental.model.JeuBean" scope="request"></jsp:useBean>
         <div class="row">
 
             <div class="offset-2 col-md-4">
                 <h3> TOP 10 </h3>
                 <ol>
-                    <li>Toto 10</li>
-                    <li>Toti 10</li>
-                    <li>Tito 9</li>
-                    <li>Tato 9</li>
-                    <li>Touo 8</li>
-                    <li>Toyto 8</li>
-                    <li>Toito 7</li>
-                    <li>Tootao 7</li>
-                    <li>Tatoo 7</li>
-                    <li>Tyto 6</li>
-
+                    <c:forEach var="unScore" items="${jeuBean.gameBestScore}">
+                    <li>${unScore.utilisateur.name} / ${unScore.score}</li>
+                    </c:forEach>
                 </ol>
             </div>
 
@@ -41,7 +34,7 @@
                     <input type="text" name="difficulte" placeholder="la difficulté que vous voulez? Entre 1 et 3"/>
                     <input type="hidden" name="uneGame" value=""/>
                     <input type="hidden" name="from" value="accueil"/>
-                    <input type="button" id="jeux"  value="JOUER">
+                    <input type="submit" id="jeux"  value="JEU">
                 </form>
             </div>
 
@@ -55,13 +48,13 @@
 
                 <div class="col-md mt-md-0 mt-3">
                     <a href="">
-                        <img src="images/logoms.png" id="cesi-logo" alt="MSC"/>
+                        <img src="images/Cesi.jpg" id="cesi-logo" alt="Cesi"/>
                     </a>
                 </div>
 
                 <div class="col-md mb-md-0 mb-3">
                     <ul class="text-cesi list-unstyled">
-                        <li class="addresse">Marina Séga and Co</li>
+                        <li class="addresse">CESI</li>
                         <li class="addresse">1 Avenue Augustin-Louis Cauchy</li>
                         <li class="addresse">44307 Nantes</li>
                     </ul>

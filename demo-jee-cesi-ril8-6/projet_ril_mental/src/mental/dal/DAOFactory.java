@@ -1,5 +1,6 @@
 package mental.dal;
 
+import mental.dal.jdbc.GameDAO;
 import mental.dal.jdbc.UtilisateurDAO;
 import mental.util.StringUtil;
 
@@ -35,6 +36,10 @@ public class DAOFactory {
     public static IUtilisateurDAO getUtilisateurDAO() {
 
         IUtilisateurDAO dao=new UtilisateurDAO();
+        return dao;
+    }
+    public static IGameDAO getGameDAO(){
+        IGameDAO dao=new GameDAO();
         return dao;
     }
 }

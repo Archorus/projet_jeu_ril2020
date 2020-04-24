@@ -1,6 +1,7 @@
 package mental.dal.jdbc;
 
 import mental.bo.Game;
+import mental.bo.Utilisateur;
 import mental.dal.DAOFactory;
 import mental.dal.IGameDAO;
 import java.sql.*;
@@ -13,6 +14,7 @@ public class GameDAO implements IGameDAO {
     private static final String UPDATE_GAME = "UPDATE game SET score=?, level=?";
     private static final String DELETE_GAME = "DELETE FROM game WHERE id= ?";
     private static final String FIND_ALL_GAME = "SELECT * FROM game";
+    private static final String FIND_BEST_SCORE = "SELECT * FROM game, utilisateur where game.utilisateur_id=utilisateur.utilisateur_id order by game.game_score DESC limit 10";
     private static final String FIND_BY_ID_GAME = "SELECT * FROM game WHERE id= ?";
 
 
@@ -94,7 +96,23 @@ public class GameDAO implements IGameDAO {
             PreparedStatement ps= connection.prepareStatement(FIND_ALL_GAME);
             ResultSet res=ps.executeQuery();
             while(res.next()) {
-                ListeDesParties.add(new Game(res.getInt(1),res.getInt(2),res.getInt(3)));
+                ListeDesParties.add(new Game(res.getInt("game_id"),res.getInt("game_score"),res.getInt("game_level")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ListeDesParties;
+    }
+    public Collection<Game> findBestScore() {
+        Collection<Game> ListeDesParties= new ArrayList<>();
+        System.out.println("est-ce que tu va là?");
+        try (Connection connection = DAOFactory.getJDBCConnection()){
+            PreparedStatement ps= connection.prepareStatement(FIND_BEST_SCORE);
+            ResultSet res=ps.executeQuery();
+            while(res.next()) {
+                System.out.println(res.getInt("game_score"));
+                Utilisateur utisateur = new Utilisateur(res.getInt("utilisateur_id"),res.getString("utilisateur_email"),res.getString("utilisateur_nom"),res.getString("utilisateur_password"),res.getInt(("utilisateur_scoreMax")));
+                ListeDesParties.add(new Game(res.getInt("game_id"),res.getInt("game_score"),res.getInt("game_level"),utisateur));
             }
         } catch (SQLException e) {
             e.printStackTrace();

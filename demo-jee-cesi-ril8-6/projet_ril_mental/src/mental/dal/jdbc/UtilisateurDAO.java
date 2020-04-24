@@ -15,21 +15,21 @@ public class UtilisateurDAO implements IUtilisateurDAO {
     private static final String DELETE_UTILISATEUR = "DELETE FROM utilisateur WHERE utilisateur_id= ?";
     private static final String FIND_ALL_UTILISATEUR = "SELECT * FROM utilisateur";
     private static final String FIND_BY_ID_UTILISATEUR = "SELECT * FROM utilisateur WHERE utilisateur_id= ?";
-    private static final String AUTH = "SELECT * FROM utilisateur WHERE utilisateur_name=? AND utilisateur_password=?";
+    private static final String AUTH = "SELECT * FROM utilisateur WHERE utilisateur_nom=? AND utilisateur_password=?";
 
 
     @Override
     public void create(Utilisateur utilisateur) throws SQLException {
         Connection connection = DAOFactory.getJDBCConnection();
-        if ( null != connection ) {
-            try ( PreparedStatement ps = connection.prepareStatement(CREATE_UTILISATEUR, Statement.RETURN_GENERATED_KEYS ) ) {
-                ps.setString( 1, utilisateur.getName() );
-                ps.setString( 2, "test" );
-                ps.setString( 2, utilisateur.getPassword() );
+        if (null != connection) {
+            try (PreparedStatement ps = connection.prepareStatement(CREATE_UTILISATEUR, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, utilisateur.getName());
+                ps.setString(2, "test");
+                ps.setString(2, utilisateur.getPassword());
                 ps.executeUpdate();
-                try ( ResultSet rs = ps.getGeneratedKeys() ) {
-                    if ( rs.next()) {
-                        utilisateur.setId( rs.getInt( 1 ) );
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        utilisateur.setId(rs.getInt(1));
                     }
                 }
             } catch (SQLException e) {
@@ -59,28 +59,28 @@ public class UtilisateurDAO implements IUtilisateurDAO {
     @Override
     public void deleteById(Integer id) throws SQLException {
 
-                try(Connection connection=DAOFactory.getJDBCConnection()){
-                    PreparedStatement ps=connection.prepareStatement(DELETE_UTILISATEUR);
-                    ps.setInt(1,id);
-                    ps.executeUpdate();
-                }catch(SQLException e){
-                    e.printStackTrace();
-                }
+        try (Connection connection = DAOFactory.getJDBCConnection()) {
+            PreparedStatement ps = connection.prepareStatement(DELETE_UTILISATEUR);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delete(Utilisateur utilisateur) throws SQLException{
-            deleteById(utilisateur.getId());
+    public void delete(Utilisateur utilisateur) throws SQLException {
+        deleteById(utilisateur.getId());
     }
 
     @Override
     public Utilisateur findById(Integer id) {
         Utilisateur utilisateur = null;
-        try (Connection connection = DAOFactory.getJDBCConnection()){
-            PreparedStatement ps= connection.prepareStatement(FIND_BY_ID_UTILISATEUR);
-            ps.setInt(1,id);
-            ResultSet res=ps.executeQuery();
-            if(res.first()){
+        try (Connection connection = DAOFactory.getJDBCConnection()) {
+            PreparedStatement ps = connection.prepareStatement(FIND_BY_ID_UTILISATEUR);
+            ps.setInt(1, id);
+            ResultSet res = ps.executeQuery();
+            if (res.first()) {
                 utilisateur = new Utilisateur();
                 utilisateur.setId(res.getInt(1));
                 utilisateur.setName(res.getString(2));
@@ -96,12 +96,12 @@ public class UtilisateurDAO implements IUtilisateurDAO {
 
     @Override
     public Collection<Utilisateur> findAll() {
-        Collection<Utilisateur> ListeUtilisateurs= new ArrayList<>();
-        try (Connection connection = DAOFactory.getJDBCConnection()){
-            PreparedStatement ps= connection.prepareStatement(FIND_ALL_UTILISATEUR);
-            ResultSet res=ps.executeQuery();
-            while(res.next()) {
-                ListeUtilisateurs.add(new Utilisateur(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getInt(5)));
+        Collection<Utilisateur> ListeUtilisateurs = new ArrayList<>();
+        try (Connection connection = DAOFactory.getJDBCConnection()) {
+            PreparedStatement ps = connection.prepareStatement(FIND_ALL_UTILISATEUR);
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                ListeUtilisateurs.add(new Utilisateur(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,14 +109,15 @@ public class UtilisateurDAO implements IUtilisateurDAO {
         return ListeUtilisateurs;
     }
 
-    public Utilisateur authenticate (Utilisateur utilisateur) {
-        System.out.println(utilisateur.getName());
-        try (Connection connection = DAOFactory.getJDBCConnection()){
-            PreparedStatement ps= connection.prepareStatement(AUTH);
-            ps.setString(1,utilisateur.getName());
-            ps.setString(2,utilisateur.getPassword());
-            ResultSet res=ps.executeQuery();
-            if(res.first()){
+    public Utilisateur authenticate(String login, String password) {
+
+        Utilisateur utilisateur = null;
+        try (Connection connection = DAOFactory.getJDBCConnection()) {
+            PreparedStatement ps = connection.prepareStatement(AUTH);
+            ps.setString(1, login);
+            ps.setString(2, password);
+            ResultSet res = ps.executeQuery();
+            if (res.first()) {utilisateur = new Utilisateur();
                 utilisateur.setId(res.getInt(1));
                 utilisateur.setName(res.getString(2));
                 utilisateur.setEmail(res.getString(3));

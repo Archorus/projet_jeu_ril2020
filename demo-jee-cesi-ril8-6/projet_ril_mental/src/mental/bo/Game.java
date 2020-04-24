@@ -5,6 +5,9 @@ public class Game {
     int score;
     int level;
 
+
+    Utilisateur utilisateur;
+
     public Game() {
     }
 
@@ -12,6 +15,13 @@ public class Game {
         this.id = id;
         this.score = score;
         this.level = level;
+    }
+
+    public Game(int id, int score, int level, Utilisateur utilisateur) {
+        this.id = id;
+        this.score = score;
+        this.level = level;
+        this.utilisateur = utilisateur;
     }
 
     public int getId() {
@@ -37,4 +47,13 @@ public class Game {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
 }

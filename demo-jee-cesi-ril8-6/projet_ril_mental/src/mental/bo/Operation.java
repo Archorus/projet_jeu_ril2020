@@ -1,7 +1,7 @@
 package mental.bo;
 
-import javax.xml.transform.Result;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Operation {
     int id;
@@ -50,8 +50,11 @@ public class Operation {
     public Operation(){
 
     }
-    public Operation[] générerExpression(int difficulté) {
-
+    public Operation(Operateur operator){
+        this.operator=operator;
+    }
+    public Collection<Operation> générerExpression(int difficulté) {
+        Collection<Operation> Expressions = new ArrayList<>();
         int listeNombres = 0;
         switch (difficulté) {
             case 1:
@@ -64,33 +67,34 @@ public class Operation {
                 listeNombres = 4;
                 break;
         }
+        for(int i=0;i<listeNombres;i++) {
+            if(i==4){
+                Expressions.add(new Operation(générerUnaire()));
+            }else {
+                Expressions.add(new Operation());
+            }
+        }
+
+
         int unaire = (int) Math.random() * 2;
         //0= pas de unaire, 1=inv, 2=rac
-        Operation[] Expressions = new Operation[listeNombres];
-        String uneExpression = "";
 
-        for (int i = 0; i < listeNombres; i++) {
+
+
+    for (Operation uneExpression:Expressions) {
+        for (int i = 0; i < 3; i++) {
             switch (i) {
                 case 0:
-                    Expressions[0].setVal1((int) (Math.random() * 9));
+                    uneExpression.setVal1((int) (Math.random() * 9));
                     break;
                 case 1:
-                    Expressions[0].setOperator(générerBinaire());
+                    uneExpression.setOperator(générerBinaire());
                     break;
                 case 2:
-                    Expressions[0].setVal2((int) (Math.random() * 9));
+                    uneExpression.setVal2((int) (Math.random() * 9));
                     break;
-                case 3:
-                    Expressions[1].setVal1((int) (Math.random() * 9));
-                case 4:
-                    Expressions[1].setOperator(générerBinaire());
-                    break;
-                case 5:
-                    Expressions[1].setVal2((int) (Math.random() * 9));
-                    break;
-                case 6:
-                    Expressions[2].setOperator(générerUnaire());
             }
+        }
         }
 
         return Expressions;
@@ -128,7 +132,7 @@ public class Operation {
         }
         return unaire;
     }
-    public static int Calcul(Operation[] Expression) {
+    public static int Calcul(Collection<Operation> Expression) {
         int Resultat = 0;
 
         for (Operation uneExpression:Expression) {

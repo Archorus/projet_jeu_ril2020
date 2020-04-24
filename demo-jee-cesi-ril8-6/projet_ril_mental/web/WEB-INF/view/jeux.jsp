@@ -12,7 +12,7 @@
 
 </head>
 <body id="Pconnexion">
-<jsp:useBean id="contactBean" class="mental.model.JeuBean" scope="request"></jsp:useBean>
+<jsp:useBean id="jeuBean" class="mental.model.JeuBean" scope="request"></jsp:useBean>
         <h1>Calculator</h1>
             <img src="images/logo.png" id="logo" alt="logo">
         <h2>${session.CURRENT_USER_SESSION_KEY}!!!</h2>
@@ -23,7 +23,7 @@
     <form method="POST" action="jeu" id="connexion">
         <h2>Calculer</h2>
 
-        <label><strong name="Expression">${jeuBean.uneExpression.getFullData()}</strong></label>
+        <label><strong name="Expression">${jeuBean.fullExpression}</strong></label>
         <input type="text" placeholder="Entrer votre réponse"  name="providedValue" required label="réponse">
 
 
@@ -48,13 +48,13 @@
 
                     <div class="col-md mt-md-0 mt-3">
                         <a href="">
-                            <img src="images/logoms.png" id="cesi-logo" alt="MSC"/>
+                            <img src="images/Cesi.jpg" id="cesi-logo" alt="Cesi"/>
                         </a>
                     </div>
 
                     <div class="col-md mb-md-0 mb-3">
                         <ul class="text-cesi list-unstyled">
-                            <li class="addresse">Marina Séga and Co</li>
+                            <li class="addresse">CESI</li>
                             <li class="addresse">1 Avenue Augustin-Louis Cauchy</li>
                             <li class="addresse">44307 Nantes</li>
                         </ul>

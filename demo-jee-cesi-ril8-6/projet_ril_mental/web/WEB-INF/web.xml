@@ -51,11 +51,19 @@
 <!--		<url-pattern>/accueil</url-pattern>-->
 <!--	</servlet-mapping>-->
 
-<session-config>
-    <session-timeout>1</session-timeout>
-</session-config>
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 
-<welcome-file-list>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <include-prelude>/WEB-INF/tags/common-tags.jsp</include-prelude>
+        </jsp-property-group>
+    </jsp-config>
+
+    <welcome-file-list>
     <welcome-file>login</welcome-file>
 </welcome-file-list>
 </web-app>

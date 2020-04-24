@@ -1,8 +1,10 @@
 package mental.bo;
 
+import java.util.Collection;
+
 public class Expression {
     int id;
-    Operation[] data;
+    Collection<Operation> data;
     int expectedValue;
     int providedValue;
 
@@ -14,16 +16,21 @@ public class Expression {
         this.id = id;
     }
 
-    public Operation[] getData() {
+    public Collection<Operation> getData() {
         return data;
     }
     public String getFullData(){
-        Operation[] laData=getData();
-        String fullData=laData.toString();
+        Collection<Operation> laData=getData();
+        String fullData="";
+        for (Operation uneData:laData) {
+            fullData=fullData+uneData.getVal1()+" ";
+            fullData=fullData+uneData.getOperator()+" ";
+            fullData=fullData+uneData.getVal2()+" ";
+        }
         return fullData;
     }
 
-    public void setData(Operation[] data) {
+    public void setData(Collection<Operation> data) {
         this.data = data;
     }
 
@@ -43,7 +50,7 @@ public class Expression {
         this.providedValue = providedValue;
     }
 
-    public Expression(int id, Operation[] data) {
+    public Expression(int id, Collection<Operation> data) {
         this.id = id;
         this.data = data;
         this.expectedValue = Operation.Calcul(data);
