@@ -1,6 +1,8 @@
 package mental.bo;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Expression {
     int id;
@@ -55,10 +57,23 @@ public class Expression {
         this.data = data;
         this.expectedValue = Operation.Calcul(data);
     }
+    public Expression(int id,String fulldata,int expectedValue,int providedValue){
+        this.id=id;
+        FullDataToData(fulldata);
+        this.expectedValue=expectedValue;
+        this.providedValue=providedValue;
+    }
     public Expression(){
 
     }
-
+    public void FullDataToData(String FullData){
+        String[] listeData=FullData.split(" ");
+        Collection<Operation> data=new ArrayList<Operation>();
+        for (int i=0;i<listeData.length;i=i+3){
+            data.add(new Operation(1,Integer.parseInt(listeData[0]),Integer.parseInt(listeData[1]),Enum.valueOf(Operateur.class,listeData[2])));
+        }
+        this.data=data;
+    }
     public void recupérerExpression(int difficulte) {
         Operation operation=new Operation();
         setData(operation.générerExpression(difficulte));

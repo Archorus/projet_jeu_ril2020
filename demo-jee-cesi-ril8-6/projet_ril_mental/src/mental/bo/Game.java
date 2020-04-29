@@ -4,9 +4,18 @@ public class Game {
     int id;
     int score;
     int level;
+    int difficulte;
 
 
-    Utilisateur utilisateur;
+    public int getDifficulte() {
+        return difficulte;
+    }
+
+    public void setDifficulte(int difficulte) {
+        this.difficulte = difficulte;
+    }
+
+    int utilisateurId;
 
     public Game() {
     }
@@ -15,13 +24,6 @@ public class Game {
         this.id = id;
         this.score = score;
         this.level = level;
-    }
-
-    public Game(int id, int score, int level, Utilisateur utilisateur) {
-        this.id = id;
-        this.score = score;
-        this.level = level;
-        this.utilisateur = utilisateur;
     }
 
     public int getId() {
@@ -48,12 +50,19 @@ public class Game {
         this.level = level;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public Game(int id, int score, int level, int utilisateurId,int difficulte) {
+        this.id = id;
+        this.score = score;
+        this.level = level;
+        this.utilisateurId = utilisateurId;
+        this.difficulte=difficulte;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public int getUtilisateurId() {
+        return utilisateurId;
     }
 
+    public void setUtilisateurId(int utilisateurId) {
+        this.utilisateurId = utilisateurId;
+    }
 }

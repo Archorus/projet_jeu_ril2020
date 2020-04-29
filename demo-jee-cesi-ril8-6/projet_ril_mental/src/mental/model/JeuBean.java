@@ -3,10 +3,14 @@ package mental.model;
 import mental.bo.Expression;
 import mental.bo.Game;
 import mental.bo.Operation;
+import mental.bo.Utilisateur;
 import mental.dal.DAOFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.xml.registry.infomodel.User;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class JeuBean implements Serializable {
@@ -20,19 +24,22 @@ public class JeuBean implements Serializable {
     private int score;
     private Collection<Game> gameBestScore;
 
-    public void NouveauJeu(HttpServletRequest request) {
+    public void NouveauJeu(HttpServletRequest request) throws SQLException {
+        HttpSession session = request.getSession( true );
         Operation operation = new Operation();
         difficulte = Integer.parseInt(request.getParameter("difficulte"));
         uneExpression = new Expression(1, operation.générerExpression(difficulte));
         fullExpression=uneExpression.getFullData();
+        int gameId=newIdGame();
+        Utilisateur user=(Utilisateur)session.getAttribute("currentUser");
+        DAOFactory.getGameDAO().create(new Game(newIdGame(),0,1,user.getId(),difficulte));
         request.setAttribute("expectedValue", uneExpression.getExpectedValue());
-        request.setAttribute("score", 0);
-        request.setAttribute("uneGame", 0);
+
+        session.setAttribute("uneGame",gameId);
 
     }
 
     public boolean jeuSuivant(HttpServletRequest request) {
-        System.out.println("vieuxjeu");
         boolean result = true;
         uneGame = Integer.parseInt(request.getParameter("uneGame"));
         if (uneGame != 10) {
@@ -47,7 +54,14 @@ public class JeuBean implements Serializable {
         }
         return result;
     }
-
+    public int newIdGame(){
+        int newId=0;
+        Collection<Game> lesGames=DAOFactory.getGameDAO().findAll();
+        for (Game uneGame:lesGames) {
+            newId=uneGame.getId();
+        }
+        return newId++;
+    }
     public void loadBestScore(HttpServletRequest request) {
         gameBestScore = DAOFactory.getGameDAO().findBestScore();
     }

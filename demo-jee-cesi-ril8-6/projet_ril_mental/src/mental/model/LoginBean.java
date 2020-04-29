@@ -36,7 +36,6 @@ public class LoginBean implements Serializable {
         createPassword=request.getParameter(FORM_FIELD_CREATE_PWD);
         boolean result = false;
         if(login!="" && password!="") {
-            System.out.println("1");
                 Utilisateur loginUtilisateur=new Utilisateur();
                 loginUtilisateur.setName(login);
                 loginUtilisateur.setPassword(password);
