@@ -10,8 +10,9 @@ import java.util.Collection;
 
 public class GameDAO implements IGameDAO {
 
-    private static final String CREATE_GAME = "INSERT INTO game (game_score, game_level, game_difficulte) VALUES(?,?,?)";
+    private static final String CREATE_GAME = "INSERT INTO game (game_score, game_level,utilisateur_id, game_difficulte) VALUES(?,?,?,?)";
     private static final String UPDATE_GAME = "UPDATE game SET game_score=?, game_level=?, game_difficulte";
+    private static final String UPDATE_SCORE= "UPDATE game SET game_score=? WHERE game_id=?";
     private static final String DELETE_GAME = "DELETE FROM game WHERE game_id= ?";
     private static final String FIND_ALL_GAME = "SELECT * FROM game";
     private static final String FIND_BEST_SCORE = "SELECT * FROM game, utilisateur where game.utilisateur_id=utilisateur.utilisateur_id order by game.game_score DESC limit 10";
@@ -21,14 +22,12 @@ public class GameDAO implements IGameDAO {
     @Override
     public Collection<Game> findBestScore() {
         Collection<Game> ListeDesParties= new ArrayList<>();
-        System.out.println("est-ce que tu va là?");
         try (Connection connection = DAOFactory.getJDBCConnection()){
             PreparedStatement ps= connection.prepareStatement(FIND_BEST_SCORE);
             ResultSet res=ps.executeQuery();
             while(res.next()) {
-                System.out.println(res.getInt("game_score"));
-                Utilisateur utisateur = new Utilisateur(res.getInt("utilisateur_id"),res.getString("utilisateur_email"),res.getString("utilisateur_nom"),res.getString("utilisateur_password"),res.getInt(("utilisateur_scoreMax")));
-                ListeDesParties.add(new Game(res.getInt("game_id"),res.getInt("game_score"),res.getInt("game_level"),utisateur.getId(),res.getInt("game_difficulte")));
+                Utilisateur utisateur = new Utilisateur(res.getInt("utilisateur.utilisateur_id"),res.getString("utilisateur_email"),res.getString("utilisateur_nom"),res.getString("utilisateur_password"),res.getInt(("utilisateur_scoreMax")));
+                ListeDesParties.add(new Game(res.getInt("game_id"),res.getInt("game_score"),res.getInt("game_level"),res.getInt("game.utilisateur_id"),res.getInt("game_difficulte")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,7 +42,8 @@ public class GameDAO implements IGameDAO {
             try ( PreparedStatement ps = connection.prepareStatement(CREATE_GAME, Statement.RETURN_GENERATED_KEYS ) ) {
                 ps.setInt( 1, game.getScore() );
                 ps.setInt( 2, game.getLevel() );
-                ps.setInt( 3, game.getDifficulte() );
+                ps.setInt(3,game.getUtilisateurId());
+                ps.setInt( 4, game.getDifficulte() );
                 ps.executeUpdate();
                 try ( ResultSet rs = ps.getGeneratedKeys() ) {
                     if ( rs.next()) {
@@ -57,6 +57,26 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
+    public int updateScore(int Score,int id) throws SQLException {
+        try (Connection connection = DAOFactory.getJDBCConnection()) {
+            if (null != connection) {
+                PreparedStatement ps= connection.prepareStatement(FIND_BY_ID_GAME);
+                ps.setInt(1,id);
+                ResultSet res=ps.executeQuery();
+                if(res.first()){
+                    Score=Score+res.getInt(2);
+                }
+                try (PreparedStatement ps2 = connection.prepareStatement(UPDATE_SCORE)) {
+                    ps2.setInt(1, Score);
+                    ps2.setInt(2, id);
+                    ps2.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return Score;
+    }
     public void update(Game game) throws SQLException {
 
         try (Connection connection = DAOFactory.getJDBCConnection()) {
@@ -117,8 +137,7 @@ public class GameDAO implements IGameDAO {
             PreparedStatement ps= connection.prepareStatement(FIND_ALL_GAME);
             ResultSet res=ps.executeQuery();
             while(res.next()) {
-                Utilisateur utisateur = new Utilisateur(res.getInt("utilisateur_id"),res.getString("utilisateur_email"),res.getString("utilisateur_nom"),res.getString("utilisateur_password"),res.getInt(("utilisateur_scoreMax")));
-                ListeDesParties.add(new Game(res.getInt("game_id"),res.getInt("game_score"),res.getInt("game_level"),utisateur.getId(),res.getInt("game_difficulte")));
+                ListeDesParties.add(new Game(res.getInt("game_id"),res.getInt("game_score"),res.getInt("game_level"),res.getInt("utilisateur_id"),res.getInt("game_difficulte")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

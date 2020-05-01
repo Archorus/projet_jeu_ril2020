@@ -9,6 +9,23 @@ public class Expression {
     Collection<Operation> data;
     int expectedValue;
     int providedValue;
+    int gameId;
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
+    }
+
+    public Expression(int id, Collection<Operation> data, int expectedValue, int providedValue, int gameId) {
+        this.id = id;
+        this.data = data;
+        this.expectedValue = expectedValue;
+        this.providedValue = providedValue;
+        this.gameId = gameId;
+    }
 
     public int getId() {
         return id;
@@ -63,14 +80,42 @@ public class Expression {
         this.expectedValue=expectedValue;
         this.providedValue=providedValue;
     }
+    public Expression(int id,String fulldata,int expectedValue,int providedValue,int gameId){
+        this.id=id;
+        FullDataToData(fulldata);
+        this.expectedValue=expectedValue;
+        this.providedValue=providedValue;
+        this.gameId=gameId;
+    }
     public Expression(){
 
     }
     public void FullDataToData(String FullData){
         String[] listeData=FullData.split(" ");
         Collection<Operation> data=new ArrayList<Operation>();
+        Operateur operator=Operateur.PLUS;
         for (int i=0;i<listeData.length;i=i+3){
-            data.add(new Operation(1,Integer.parseInt(listeData[0]),Integer.parseInt(listeData[1]),Enum.valueOf(Operateur.class,listeData[2])));
+            switch(listeData[1]){
+                case "MULTIPLIER":
+                    operator=Operateur.MULTIPLIER;
+                    break;
+                case "PLUS":
+                    operator=Operateur.PLUS;
+                    break;
+                case "MOINS":
+                    operator=Operateur.MOINS;
+                    break;
+                case "DIVISER":
+                    operator=Operateur.DIVISER;
+                    break;
+                case "INV":
+                    operator=Operateur.INV;
+                    break;
+                case "RAC":
+                    operator=Operateur.RAC;
+                    break;
+            }
+            data.add(new Operation(1,Integer.parseInt(listeData[0]),Integer.parseInt(listeData[2]),operator));
         }
         this.data=data;
     }
@@ -80,33 +125,20 @@ public class Expression {
         setExpectedValue(operation.Calcul(getData()));
     }
 
-    public Game évaluer(Game uneGame) {
-        if (getExpectedValue() == getProvidedValue()) {
-
-            uneGame.setScore(uneGame.getScore() + 5);
-        }
-
-    if (getExpectedValue()*2>getProvidedValue()) {
-        uneGame.setScore(uneGame.getScore() - 3);
-    }
-    if(getExpectedValue()*3>getProvidedValue()) {
-        uneGame.setScore(uneGame.getScore() - 6);
-    }
-    return uneGame;
-}
 public int évaluer(int expectValue,int provideValue){
         int score=0;
     if (expectValue == provideValue) {
 
         score=5;
+    }else {
+        if(expectValue>provideValue*2){
+            score=-3;
+        }
+        if(expectValue*2<provideValue){
+            score=-4;
+        }
     }
 
-    if (expectValue*2>provideValue) {
-        score=-3;
-    }
-    if(expectValue*3>provideValue) {
-        score= - 6;
-    }
     return score;
 }
 

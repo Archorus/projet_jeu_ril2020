@@ -6,6 +6,7 @@ import mental.bo.Operation;
 import mental.bo.Utilisateur;
 import mental.dal.DAOFactory;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.registry.infomodel.User;
@@ -21,6 +22,7 @@ public class JeuBean implements Serializable {
     private String fullExpression;
     private int uneGame;
     private int difficulte;
+    private int nbExpression;
     private int score;
     private Collection<Game> gameBestScore;
 
@@ -28,31 +30,52 @@ public class JeuBean implements Serializable {
         HttpSession session = request.getSession( true );
         Operation operation = new Operation();
         difficulte = Integer.parseInt(request.getParameter("difficulte"));
-        uneExpression = new Expression(1, operation.générerExpression(difficulte));
+        uneExpression = new Expression(newIdExpression(), operation.générerExpression(difficulte));
         fullExpression=uneExpression.getFullData();
         int gameId=newIdGame();
+        uneExpression.setGameId(gameId);
         Utilisateur user=(Utilisateur)session.getAttribute("currentUser");
         DAOFactory.getGameDAO().create(new Game(newIdGame(),0,1,user.getId(),difficulte));
+        DAOFactory.getExpressionDAO().create(uneExpression);
+        nbExpression=1;
         request.setAttribute("expectedValue", uneExpression.getExpectedValue());
-
-        session.setAttribute("uneGame",gameId);
-
+        request.setAttribute("nbExpression",nbExpression);
+        request.setAttribute("uneGame",gameId);
     }
 
-    public boolean jeuSuivant(HttpServletRequest request) {
+    public boolean jeuSuivant(HttpServletRequest request) throws SQLException {
         boolean result = true;
+        HttpSession session = request.getSession( true );
         uneGame = Integer.parseInt(request.getParameter("uneGame"));
-        if (uneGame != 10) {
+        nbExpression=Integer.parseInt(request.getParameter("nbExpression"));
+        difficulte=Integer.parseInt(request.getParameter("difficulte"));
+        if (nbExpression != 10) {
             Operation operation = new Operation();
-            score = Integer.parseInt(request.getParameter("expectedValue"));
-            uneGame = Integer.parseInt(request.getParameter("uneGame"));
-            uneExpression = new Expression(1, operation.générerExpression(difficulte));
+            score = Integer.parseInt(request.getParameter("score"));
+            uneExpression = new Expression(newIdExpression(), operation.générerExpression(difficulte));
+            uneExpression.setGameId(uneGame);
+            fullExpression=uneExpression.getFullData();
+            DAOFactory.getExpressionDAO().create(uneExpression);
             request.setAttribute("expectedValue", uneExpression.getExpectedValue());
-            request.setAttribute("uneGame", uneGame++);
+            request.setAttribute("nbExpression", nbExpression++);
         } else {
             result = false;
         }
         return result;
+    }
+    public void afficherScore(HttpServletRequest request) throws SQLException{
+        Game laGame=DAOFactory.getGameDAO().findById(Integer.parseInt(request.getParameter("uneGame")));
+        score=laGame.getScore();
+    }
+    public int updateScore(int score,int id) throws SQLException {
+        return DAOFactory.getGameDAO().updateScore(score,id);
+    }
+    public int getNbExpression() {
+        return nbExpression;
+    }
+
+    public void setNbExpression(int nbExpression) {
+        this.nbExpression = nbExpression;
     }
     public int newIdGame(){
         int newId=0;
@@ -61,6 +84,14 @@ public class JeuBean implements Serializable {
             newId=uneGame.getId();
         }
         return newId++;
+    }
+    public int newIdExpression(){
+        int newId=0;
+        Collection<Expression> lesExpressions=DAOFactory.getExpressionDAO().findAll();
+        for(Expression uneExpression:lesExpressions){
+            newId=uneExpression.getId();
+        }
+        return  newId++;
     }
     public void loadBestScore(HttpServletRequest request) {
         gameBestScore = DAOFactory.getGameDAO().findBestScore();

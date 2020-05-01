@@ -10,4 +10,5 @@ public interface IGameDAO extends IDAO<Integer , Game> {
 
     @Override
     void create(Game object) throws SQLException;
+    int updateScore(int Score,int id) throws SQLException;
 }

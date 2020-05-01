@@ -24,7 +24,7 @@
                 <h3> TOP 10 </h3>
                 <ol>
                     <c:forEach var="unScore" items="${jeuBean.gameBestScore}">
-                    <li>${unScore.utilisateur.name} / ${unScore.score}</li>
+                    <li>${unScore.utilisateurId} / ${unScore.score}</li>
                     </c:forEach>
                 </ol>
             </div>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,27 +36,38 @@ public class MentalController extends HttpServlet {
             req.setAttribute("jeuBean",jeuBean);
         }
         String path=req.getServletPath();
-        System.out.println(path+"coucou");
+
         switch(path) {
             case "/jeu":
-                System.out.println("hey");
                 if(req.getParameter("from").equals("accueil")){
                 req.setAttribute("difficulte",req.getParameter("difficulte"));
-                jeuBean.NouveauJeu(req);
-                req.getServletContext().getRequestDispatcher( "/WEB-INF/view/jeux.jsp" ).forward( req, resp );
+                    try {
+                        jeuBean.NouveauJeu(req);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    req.getServletContext().getRequestDispatcher( "/WEB-INF/view/jeux.jsp" ).forward( req, resp );
                 }else{
-                    System.out.println("lol");
+
                     req.setAttribute("difficulte",req.getParameter("difficulte"));
                     req.setAttribute("uneGame",req.getParameter("uneGame"));
-                    if(jeuBean.jeuSuivant(req)){
-                        req.getServletContext().getRequestDispatcher( "/WEB-INF/view/jeux.jsp" ).forward( req, resp );
-                    }else{
-                        resp.sendRedirect(req.getContextPath()+"/score");
+                    try {
+                        if(jeuBean.jeuSuivant(req)){
+                            req.getServletContext().getRequestDispatcher( "/WEB-INF/view/jeux.jsp" ).forward( req, resp );
+                        }else{
+
+                            try {
+                                jeuBean.afficherScore(req);
+                                req.setAttribute("score",jeuBean.getScore());
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                            req.getServletContext().getRequestDispatcher( "/WEB-INF/view/score.jsp" ).forward( req, resp );
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
                 }
-                break;
-            case "/score":
-                resp.sendRedirect(req.getContextPath()+"/score");
                 break;
             default:
                 req.getServletContext().getRequestDispatcher( "/WEB-INF/view/accueil.jsp" ).forward( req, resp );
@@ -66,18 +78,22 @@ public class MentalController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getParameter("from")+"????");
-        if(!req.getParameter("from").equals("accueil")) {
-            Expression expression = new Expression();
-            req.setAttribute("score", expression.évaluer(Integer.parseInt(req.getParameter("expectedValue")), Integer.parseInt(req.getParameter("providedValue"))));
+        JeuBean jeuBean= new JeuBean();
+        req.setAttribute("jeuBean",jeuBean);
+        Expression expression = new Expression();
+        if(req.getParameter("from").equals("accueil")) {
             req.setAttribute("difficulte", req.getParameter("difficulte"));
             req.setAttribute("uneGame", req.getParameter("uneGame"));
             doGet(req, resp);
         }else{
             req.setAttribute("difficulte", req.getParameter("difficulte"));
             req.setAttribute("uneGame", req.getParameter("uneGame"));
+            try {
+                req.setAttribute("score",jeuBean.updateScore(expression.évaluer(Integer.parseInt(req.getParameter("expectedValue")),Integer.parseInt(req.getParameter("providedValue"))),Integer.parseInt(req.getParameter("uneGame"))));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             doGet(req,resp);
         }
-
     }
 }

@@ -16,7 +16,8 @@
 <img src="images/logo.png" id="logo" alt="logo">
 <h2>Bienvenue (Nom utilisateur) !!!</h2>
 <a  href="connexion.html"> <input id="deco" type="deco" value="Déconnexion"></a>
-<h2> Score 8 Bravo !!! </h2>
+<jsp:useBean id="jeuBean" class="mental.model.JeuBean" scope="request"></jsp:useBean>
+<h2> Score ${jeuBean.score} Bravo !!! </h2>
 <div class="container-fluid">
     <div class="row">
         <div class="offset-2 col-md-3">

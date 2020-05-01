@@ -5,6 +5,7 @@ public class Game {
     int score;
     int level;
     int difficulte;
+    int utilisateurId;
 
 
     public int getDifficulte() {
@@ -15,7 +16,7 @@ public class Game {
         this.difficulte = difficulte;
     }
 
-    int utilisateurId;
+
 
     public Game() {
     }

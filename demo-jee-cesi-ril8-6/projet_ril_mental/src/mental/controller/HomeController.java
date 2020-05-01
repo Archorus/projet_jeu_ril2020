@@ -31,7 +31,7 @@ public class HomeController extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 Expression expression = new Expression();
-                req.setAttribute("score", expression.évaluer((int) req.getAttribute("expectedValue"), (int) req.getAttribute("providedValue")));
+                req.setAttribute("score", req.getParameter("score")+expression.évaluer((int) req.getAttribute("expectedValue"), (int) req.getAttribute("providedValue")));
                 req.setAttribute("difficulte", req.getParameter("difficulte"));
                 req.setAttribute("uneGame", req.getParameter("uneGame"));
         req.getServletContext().getRequestDispatcher( JEU_JSP ).forward( req, resp );

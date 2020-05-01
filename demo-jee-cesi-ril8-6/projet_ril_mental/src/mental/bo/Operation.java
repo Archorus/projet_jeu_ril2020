@@ -143,10 +143,10 @@ public class Operation {
                     Resultat = Resultat + (uneExpression.getVal1() - uneExpression.getVal2());
                     break;
                 case MULTIPLIER:
-                    Resultat = Resultat + (uneExpression.getVal1() + uneExpression.getVal2());
+                    Resultat = Resultat + (uneExpression.getVal1()*uneExpression.getVal2());
                     break;
                 case DIVISER:
-                    Resultat = Resultat + (uneExpression.getVal1() + uneExpression.getVal2());
+                    Resultat = Resultat + (uneExpression.getVal1()/uneExpression.getVal2());
                     break;
                 case INV:
                     Resultat= Resultat/Resultat;

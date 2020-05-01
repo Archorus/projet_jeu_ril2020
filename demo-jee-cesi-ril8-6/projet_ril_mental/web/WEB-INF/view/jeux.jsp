@@ -28,8 +28,10 @@
 
 
         <input type="hidden" name="difficulte" value="${jeuBean.difficulte}"/>
-        <input type="hidden" name="uneGame" value="${jeuBean.uneGame}"/>
+        <input type="hidden" name="uneGame" value="${jeuBean.uneExpression.gameId}"/>
         <input type="hidden" name="from" value="jeux"/>
+        <input type="hidden" name="expectedValue" value="${jeuBean.uneExpression.expectedValue}"/>
+        <input type="hidden" name="nbExpression" value="${jeuBean.nbExpression}"/>
         <input type="hidden" name="score" value="${jeuBean.score}"/>
         <input type="submit" id='submit' value='Valider' >
 

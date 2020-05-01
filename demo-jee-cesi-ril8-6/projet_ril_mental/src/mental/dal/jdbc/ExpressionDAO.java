@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class ExpressionDAO  implements IExpressionDAO {
 
-    private static final String CREATE_EXPRESSION = "INSERT INTO expression (expression_data, expression_reponseCalcul, expression_reponseUser) VALUES(?,?,?)";
+    private static final String CREATE_EXPRESSION = "INSERT INTO expression (expression_data, expression_reponseCalcul, expression_reponseUser,game_id) VALUES(?,?,?,?)";
     private static final String UPDATE_EXPRESSION = "UPDATE expression SET expression_data=?, expression_reponseCalcul=?, expression_reponseUser=?where expression_id=?";
     private static final String DELETE_EXPRESSION = "DELETE FROM expression WHERE expression_id= ?";
     private static final String FIND_BY_ID_EXPRESSION = "SELECT * FROM expression WHERE expression_id= ?";
@@ -24,6 +24,7 @@ public class ExpressionDAO  implements IExpressionDAO {
                 ps.setString( 1, expression.getFullData() );
                 ps.setInt( 2, expression.getExpectedValue() );
                 ps.setInt( 3, expression.getProvidedValue() );
+                ps.setInt(4,expression.getGameId());
                 ps.executeUpdate();
                 try ( ResultSet rs = ps.getGeneratedKeys() ) {
                     if ( rs.next()) {
