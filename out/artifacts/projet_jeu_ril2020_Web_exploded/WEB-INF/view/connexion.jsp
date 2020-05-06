@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+
+
+    <!--BOOSTRAP-->
+    <link rel="stylesheet" type="text/css" href="vendors/bootstrap4.3.1.min.css" />
+    <!-- CSS-->
+    <link rel="stylesheet" href="css.css" media="screen" type="text/css" />
+
+</head>
+<body id="Pconnexion">
+
+<h1>Calculator</h1>
+<img src="images/logo.png" id="logo" alt="logo">
+    <div class="container">
+    <!-- zone de connexion -->
+
+        <form method="POST" action="login" id="connexion">
+            <h2>Connexion</h2>
+
+            <label><b>Nom d'utilisateur</b></label>
+                    <input type="text" placeholder="Entrer le nom d'utilisateur" name="login-username" required label="name">
+
+            <label><b>Mot de passe</b></label>
+                    <input type="password" placeholder="Entrer le mot de passe" name="login-password" required label="password">
+
+                     <input type="submit" id='submit' value='GO' onclick="login()" >
+
+        <!-- si mot de passe incorrect message d'erreur "Utilisateur ou mot de passe incorrect"-->
+    </form>
+        <a  href="#" onclick = "toggle('creation')">Création compte</a>
+        <!-- permet de cacher le formulaire d'inscription-->
+    </div>
+    <div class="container" id="creation" style="visibility:hidden";>
+    <form method="POST" action="login" id="create">
+        <h2>Création</h2>
+
+        <label><b>Nom d'utilisateur</b></label>
+        <input type="text" placeholder="Entrer le nom d'utilisateur" name="create-username" required>
+
+        <label><b>Mot de passe</b></label>
+        <input type="password" placeholder="Entrer le mot de passe" name="create-password" required>
+
+        <input type="submit" id='submit2' value='CREATION' >
+
+        <!-- l'utilisateur doit se log juste aprés la connexion-->
+
+    </form>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small pt-4" id="footer-entire">
+
+    <div class="container-fluid text-center text-md-center">
+        <div class="row">
+
+            <div class="col-md mt-md-0 mt-3">
+                <a href="">
+                    <img src="images/Cesi.jpg" id="cesi-logo" alt="Cesi"/>
+                </a>
+            </div>
+
+            <div class="col-md mb-md-0 mb-3">
+                <ul class="text-cesi list-unstyled">
+                    <li class="addresse">CESI</li>
+                    <li class="addresse">1 Avenue Augustin-Louis Cauchy</li>
+                    <li class="addresse">44307 Nantes</li>
+                </ul>
+                <ul class="items-social-links list-unstyled">
+                    <li><a href=""><img src="images/fb.png" alt="fb"/></a></li>
+                    <li><a href=""><img src="images/in.png" alt="in"/></a></li>
+                    <li><a href=""><img src="images/twitter.png" alt="twitter"/></a></li>
+                    <li><a href=""><img src="images/yt.png" alt="youtube"/></a></li>
+                </ul>
+            </div>
+
+            <div class="col-md mb-md-0 mb-3">
+
+                <img src="images/logo.png" id="Flogo" alt="Logo"/>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+        <p>All rights reserved by Calculator. Copyright © 2020</p>
+    </div>
+</footer>>
+</body>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="js.js"></script>
+</html>
