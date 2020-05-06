@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="projet_jeu_ril2020" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../dev-java/jstl-1.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../../dev-java/mysql-connector-java-8.0.17.jar" />
+        </element>
       </element>
     </root>
   </artifact>
