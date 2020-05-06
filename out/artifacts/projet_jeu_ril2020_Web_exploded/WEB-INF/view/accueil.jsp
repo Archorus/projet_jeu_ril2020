@@ -34,7 +34,7 @@
                     <input type="text" name="difficulte" placeholder="la difficulté que vous voulez? Entre 1 et 3"/>
                     <input type="hidden" name="uneGame" value=""/>
                     <input type="hidden" name="from" value="accueil"/>
-                    <input type="submit" id="jeux"  value="JEU">
+                    <input type="submit" class="jeux"  value="JEU">
                 </form>
             </div>
 

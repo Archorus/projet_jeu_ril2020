@@ -36,11 +36,7 @@
         <input type="submit" id='submit' value='Valider' >
 
 
-    </form>
-        <a id="Pnavigation" href="#" onclick = "">Précédent</a>
-    <!-- reviens a la page d'avant -->
-        <a id="Snavigation"  href="#" onclick = "">Suivant</a>
-    <!-- reviens a la page d'Après -->
+
 </div>
         <!-- Footer -->
         <footer class="page-footer font-small pt-4" id="footer-entire">

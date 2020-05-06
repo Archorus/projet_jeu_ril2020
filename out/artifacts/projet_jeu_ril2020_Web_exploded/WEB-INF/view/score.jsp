@@ -60,7 +60,7 @@
 
             <div class="col-md mt-md-0 mt-3">
                 <a href="">
-                    <img src="images/Cesi.jpg" id="cesi-logo" alt="Cesi"/>
+                    <img src="images/logoms.png" id="cesi-logo" alt="Cesi"/>
                 </a>
             </div>
 

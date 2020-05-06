@@ -133,7 +133,7 @@ input[type=text], input[type=password] {
 
 /* ** boutons ** */
 input[type=submit] {
-    background-color:#33AFFF;
+    background-color: #33AFFF;
     color: #00030e;
     padding: 14px 20px;
     font-size: 400%;
@@ -141,13 +141,16 @@ input[type=submit] {
     cursor: pointer;
     border-radius: 10%;
     margin: 8px 0;
-    width: 40%;
+    width: 100%;
 }
+
+
 input[type=submit]:hover {
     background-color: #1129b4;
     color: #c3eae6;
     border: 1px solid #c3eae6;
     border-radius: 10px;
+    width: 100%;
 }
 #Blogin{
     margin-left: 30%;
@@ -183,19 +186,13 @@ input[type=bouton]:hover {
     border-radius: 10px;
 }
 /************************Jeux**********************/
-#Pnavigation{
-    margin-left: 10%;
 
-}
-#Snavigation{
-    margin-left: 70%;
-
-}
-#Bsuivant{
-    margin-left: 20%;
-}
 #valider{
     margin-left: 20%;
+}
+.jeux{
+    width: -webkit-fill-available;
+    text-align: center;
 }
 
 /******************Score ************************/
