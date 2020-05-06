@@ -46,15 +46,15 @@
         <div class="container-fluid text-center text-md-center">
             <div class="row">
 
-                <div class="col-md mt-md-0 mt-3">
+                <div class="col-md mt-md-0 mt-6">
                     <a href="">
                         <img src="images/logoms.png" id="cesi-logo" alt="Cesi"/>
                     </a>
                 </div>
 
-                <div class="col-md mb-md-0 mb-3">
+                <div class="col-md mb-md-0 mb-6">
                     <ul class="text-cesi list-unstyled">
-                        <li class="addresse">CESI</li>
+                        <li class="addresse">Marina Séga and CO</li>
                         <li class="addresse">1 Avenue Augustin-Louis Cauchy</li>
                         <li class="addresse">44307 Nantes</li>
                     </ul>
@@ -64,12 +64,6 @@
                         <li><a href=""><img src="images/twitter.png" alt="twitter"/></a></li>
                         <li><a href=""><img src="images/yt.png" alt="youtube"/></a></li>
                     </ul>
-                </div>
-
-                <div class="col-md mb-md-0 mb-3">
-
-                        <img src="images/logo.png" id="Flogo" alt="Logo"/>
-
                 </div>
             </div>
         </div>
